@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #CCFF00;
+  --color-secondary: #00D1FF;
+  --color-background: #0e0e0e;
+  --color-surface-low: #131313;
+  --color-surface-high: #20201f;
+  --color-surface-variant: #262626;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: #fff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.04em;
+  }
+}
+
+/* Kinetic Glass Effect - Improved Elevation */
+.kinetic-glass {
+  background: rgba(40, 40, 39, 0.4);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+.kinetic-glass:hover {
+  backdrop-filter: blur(24px);
+  background: rgba(45, 45, 44, 0.7);
+  border-color: rgba(204, 255, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.raised-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.raised-card:hover {
+    transform: translateY(-4px);
+}
+
+
+/* Hide Google Maps Default InfoWindow Frame */
+.gm-style-iw {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.gm-style-iw-d {
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+
+.gm-ui-hover-effect {
+    display: none !important;
+}
+
+.gm-style-iw-tc::after {
+    display: none !important;
+}
+
+.gm-style-iw-c {
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Custom Marker Labels */
+.marker-label {
+    background: rgba(0, 0, 0, 0.9) !important;
+    border: 1px solid #CCFF00 !important;
+    color: #CCFF00 !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    padding: 2px 8px !important;
+    border-radius: 4px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    white-space: nowrap !important;
+    box-shadow: 0 0 15px rgba(204, 255, 0, 0.4) !important;
+    pointer-events: none !important;
+    transform: translateY(-5px) !important;
+}

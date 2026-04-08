@@ -1,0 +1,5 @@
+{"level":"error","message":"Email sending failed: Missing credentials for \"PLAIN\"","service":"futsalkhelum-api","timestamp":"2026-04-07T09:47:52.972Z"}
+{"level":"error","message":"Email sending failed: Missing credentials for \"PLAIN\"","service":"futsalkhelum-api","timestamp":"2026-04-07T09:47:53.104Z"}
+{"level":"error","message":"Email sending failed: Missing credentials for \"PLAIN\"","service":"futsalkhelum-api","timestamp":"2026-04-07T09:51:10.093Z"}
+{"level":"error","message":"Email sending failed: Missing credentials for \"PLAIN\"","service":"futsalkhelum-api","timestamp":"2026-04-07T09:54:34.280Z"}
+{"level":"error","message":"Email sending failed: Missing credentials for \"PLAIN\"","service":"futsalkhelum-api","timestamp":"2026-04-07T09:59:51.054Z"}

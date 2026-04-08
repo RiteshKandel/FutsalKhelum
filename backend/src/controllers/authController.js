@@ -1,0 +1,183 @@
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+import OTP from '../models/OTP.js';
+import FutsalGround from '../models/FutsalGround.js';
+import { sendEmail } from '../services/email.js';
+
+// Generate Token
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN
+    });
+};
+
+const generateOtp = () => {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+};
+
+export const register = async (req, res) => {
+    const { name, email, password, role, phone, futsalName, address, lat, lng } = req.body;
+
+    const existingUser = await User.findOne({ email });
+    let user;
+
+    if (existingUser) {
+        if (existingUser.isVerified) {
+            return res.status(400).json({ status: 'error', message: 'User already exists and is verified. Please login.' });
+        }
+        
+        // Update unverified user details
+        existingUser.name = name;
+        existingUser.password = password;
+        existingUser.role = role;
+        existingUser.phone = phone;
+        existingUser.isApproved = role === 'OWNER' ? false : true;
+        await existingUser.save();
+        user = existingUser;
+    } else {
+        user = await User.create({
+            name,
+            email,
+            password,
+            role,
+            phone,
+            isVerified: false,
+            isApproved: role === 'OWNER' ? false : true
+        });
+    }
+
+    // If Owner, create a FutsalGround entry
+    if (role === 'OWNER') {
+        const existingGround = await FutsalGround.findOne({ ownerId: user._id });
+        if (!existingGround) {
+            await FutsalGround.create({
+                name: futsalName || `${name}'s Futsal`,
+                ownerId: user._id,
+                address: address || 'TBD',
+                location: {
+                    type: 'Point',
+                    coordinates: [lng || 0, lat || 0]
+                },
+                pricePerHour: 0, // Owner will update this later
+                isVerified: false
+            });
+        } else {
+            // Update existing ground if user is re-registering
+            existingGround.name = futsalName || existingGround.name;
+            existingGround.address = address || existingGround.address;
+            existingGround.location.coordinates = [lng || existingGround.location.coordinates[0], lat || existingGround.location.coordinates[1]];
+            await existingGround.save();
+        }
+    }
+
+    const otp = generateOtp();
+    // Clear old OTPs for this email
+    await OTP.deleteMany({ email });
+    await OTP.create({ email, otp });
+
+    const message = `Welcome to FutsalKhelum! Your verification OTP is: ${otp}. It will expire in 5 minutes.`;
+    
+    // We don't await sendEmail so the user doesn't get blocked if ethereal email is not fully configured or slow.
+    // Or we handle error gracefully.
+    try {
+        await sendEmail({
+            email: user.email,
+            subject: 'FutsalKhelum Verification OTP',
+            message
+        });
+    } catch (emailError) {
+        console.error('Email sending failed, but user was created:', emailError.message);
+    }
+
+    res.status(201).json({
+        status: 'success',
+        message: 'Registration successful. Please check your email for the OTP to verify your account.',
+        data: { id: user._id, email: user.email, role: user.role }
+    });
+};
+
+export const verifyOtp = async (req, res) => {
+    const { email, otp } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ status: 'error', message: 'User not found' });
+    
+    if (user.isVerified) {
+        return res.status(400).json({ status: 'error', message: 'User already verified' });
+    }
+
+    const otpRecord = await OTP.findOne({ email }).sort({ createdAt: -1 });
+    if (!otpRecord) return res.status(400).json({ status: 'error', message: 'OTP expired or not found' });
+
+    const isMatch = await otpRecord.verifyOtp(otp);
+    if (!isMatch) return res.status(400).json({ status: 'error', message: 'Invalid OTP' });
+
+    user.isVerified = true;
+    await user.save();
+    
+    // Delete all OTPs for this email after successful verification
+    await OTP.deleteMany({ email });
+
+    const token = generateToken(user._id);
+
+    res.status(200).json({
+        status: 'success',
+        message: 'Email successfully verified',
+        token,
+        data: { id: user._id, name: user.name, email: user.email, role: user.role, isVerified: true, isApproved: user.isApproved }
+    });
+};
+
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email }).select('+password');
+    if (!user) return res.status(401).json({ status: 'error', message: 'Invalid credentials' });
+
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) return res.status(401).json({ status: 'error', message: 'Invalid credentials' });
+
+    if (!user.isVerified) {
+        return res.status(401).json({ status: 'error', message: 'Please verify your email first' });
+    }
+
+    if (user.role === 'OWNER' && !user.isApproved) {
+        return res.status(403).json({ status: 'error', message: 'Your account is pending admin approval' });
+    }
+
+    const token = generateToken(user._id);
+    
+    // Don't send password in response
+    const userWithoutPassword = await User.findById(user._id);
+
+    res.status(200).json({
+        status: 'success',
+        token,
+        data: userWithoutPassword
+    });
+};
+
+// @desc    Update user profile
+// @route   PUT /api/v1/auth/profile
+// @access  Private
+export const updateProfile = async (req, res) => {
+    try {
+        const { name, phone } = req.body;
+
+        const user = await User.findById(req.user.id);
+        if (!user) return res.status(404).json({ status: 'error', message: 'User not found' });
+
+        if (name) user.name = name;
+        if (phone) user.phone = phone;
+
+        await user.save();
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Profile updated successfully',
+            data: user
+        });
+    } catch (error) {
+        res.status(500).json({ status: 'error', message: 'Failed to update profile' });
+    }
+};

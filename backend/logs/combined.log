@@ -1,0 +1,83 @@
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T09:09:53.755Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T09:20:21.022Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T09:26:27.276Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T09:30:14.755Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T09:32:27.663Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T09:40:04.786Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T09:40:29.314Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T09:43:06.488Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T09:45:54.952Z"}
+{"level":"error","message":"Email sending failed: Missing credentials for \"PLAIN\"","service":"futsalkhelum-api","timestamp":"2026-04-07T09:47:52.972Z"}
+{"level":"error","message":"Email sending failed: Missing credentials for \"PLAIN\"","service":"futsalkhelum-api","timestamp":"2026-04-07T09:47:53.104Z"}
+{"level":"error","message":"Email sending failed: Missing credentials for \"PLAIN\"","service":"futsalkhelum-api","timestamp":"2026-04-07T09:51:10.093Z"}
+{"level":"error","message":"Email sending failed: Missing credentials for \"PLAIN\"","service":"futsalkhelum-api","timestamp":"2026-04-07T09:54:34.280Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T09:58:58.911Z"}
+{"level":"error","message":"Email sending failed: Missing credentials for \"PLAIN\"","service":"futsalkhelum-api","timestamp":"2026-04-07T09:59:51.054Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T10:05:46.894Z"}
+{"level":"info","message":"Message sent: <c458dd2e-4b33-4322-fcbf-29bf35c121ca@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-07T10:06:15.480Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadTXGUI3YJ8ViKDtAAAAAuQhYE6TLsljp3bMeT5UoyI","service":"futsalkhelum-api","timestamp":"2026-04-07T10:06:15.482Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T10:09:57.339Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T13:01:12.241Z"}
+{"level":"info","message":"Message sent: <55bb5db3-c568-a480-3eed-cb831cff10dd@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-07T13:03:25.078Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadUAoCl.9CxZqQ7vAAAAAz.nDARhZDR.zPRgBKea3kQ","service":"futsalkhelum-api","timestamp":"2026-04-07T13:03:25.082Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T13:04:38.801Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T13:12:29.703Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T13:12:45.156Z"}
+{"level":"info","message":"Message sent: <9e5449b0-9cd4-ee69-fab9-d589bf078645@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-07T13:26:09.331Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadUF9EI3YJ8ViRfjAAAABOaAiqkBTWI17r0gRubvolk","service":"futsalkhelum-api","timestamp":"2026-04-07T13:26:09.344Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T13:31:37.144Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T13:31:48.616Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T14:00:06.870Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T14:00:39.820Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T14:01:10.926Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T14:01:26.925Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T14:06:17.921Z"}
+{"level":"info","message":"Message sent: <5c99346c-e3de-c035-b833-a6d6b3513bd9@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-07T14:24:32.751Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadUToyl.9CxZqUOKAAAABQGVBxvWzdbQOuiJsgBkwaM","service":"futsalkhelum-api","timestamp":"2026-04-07T14:24:32.760Z"}
+{"level":"info","message":"Message sent: <c1d3d964-fb9b-617e-7653-618401951184@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-07T14:32:45.366Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadUVkHNp7fHIUnorAAAABk1J0VcnRlkCkPSSysGqRWA","service":"futsalkhelum-api","timestamp":"2026-04-07T14:32:45.369Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T14:40:53.271Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-07T14:53:54.024Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T07:15:51.775Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T11:43:20.485Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T11:43:28.045Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T11:44:05.678Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T11:44:11.725Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T13:19:06.768Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T13:19:21.470Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T13:19:34.535Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T13:28:29.656Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T13:38:53.455Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T13:44:14.312Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T13:49:16.187Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T13:50:25.722Z"}
+{"level":"info","message":"Message sent: <c4b9c120-6db4-3957-53de-82ac4c3e459c@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-08T13:52:31.255Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadZdoEI3YJ8VjA7QAAAAB-HSAIeOTRWbZW3X4K1iU3I","service":"futsalkhelum-api","timestamp":"2026-04-08T13:52:31.258Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T13:53:19.467Z"}
+{"level":"info","message":"Message sent: <b87b9db9-6bc6-9170-427d-5ebb419ded43@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-08T13:53:45.038Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadZd6il.9CxZrB0OAAAACAURQz6iyKSvJPq.Gpp817M","service":"futsalkhelum-api","timestamp":"2026-04-08T13:53:45.040Z"}
+{"level":"info","message":"Message sent: <0fad839a-1370-00f4-5d47-cdee661ca1bd@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-08T14:02:10.063Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadZf4yl.9CxZrCDkAAAACYmP5ctHfqGFXrLaHsB-zGU","service":"futsalkhelum-api","timestamp":"2026-04-08T14:02:10.075Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:04:41.348Z"}
+{"level":"info","message":"Message sent: <baddecf6-a12a-caea-3b7b-60cc788dd494@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-08T14:10:46.806Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadZh6HNp7fHIVWMNAAAACgKcfbZxjweHkaF-oEX4P-w","service":"futsalkhelum-api","timestamp":"2026-04-08T14:10:46.814Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:12:27.964Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:16:58.106Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:24:11.085Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:24:39.673Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:24:56.797Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:25:28.723Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:25:48.871Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:26:48.181Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:27:15.738Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:28:13.804Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:28:26.126Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:29:06.240Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:29:45.029Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:30:37.570Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:31:20.529Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:31:48.959Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:32:09.519Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:32:25.629Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:33:04.086Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-08T14:33:39.248Z"}

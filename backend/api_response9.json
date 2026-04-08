@@ -1,0 +1,102 @@
+{
+  "status": "success",
+  "day": "Thu",
+  "data": [
+    {
+      "startTime": "06:00",
+      "endTime": "07:00",
+      "price": 1000,
+      "isAvailable": false
+    },
+    {
+      "startTime": "07:00",
+      "endTime": "08:00",
+      "price": 1000,
+      "isAvailable": true
+    },
+    {
+      "startTime": "08:00",
+      "endTime": "09:00",
+      "price": 1000,
+      "isAvailable": true
+    },
+    {
+      "startTime": "09:00",
+      "endTime": "10:00",
+      "price": 1000,
+      "isAvailable": true
+    },
+    {
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "price": 1000,
+      "isAvailable": true
+    },
+    {
+      "startTime": "11:00",
+      "endTime": "12:00",
+      "price": 1000,
+      "isAvailable": true
+    },
+    {
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "price": 1000,
+      "isAvailable": true
+    },
+    {
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "price": 1000,
+      "isAvailable": true
+    },
+    {
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "price": 1000,
+      "isAvailable": true
+    },
+    {
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "price": 1000,
+      "isAvailable": false
+    },
+    {
+      "startTime": "16:00",
+      "endTime": "17:00",
+      "price": 1000,
+      "isAvailable": true
+    },
+    {
+      "startTime": "17:00",
+      "endTime": "18:00",
+      "price": 1000,
+      "isAvailable": true
+    },
+    {
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "price": 1200,
+      "isAvailable": false
+    },
+    {
+      "startTime": "19:00",
+      "endTime": "20:00",
+      "price": 1200,
+      "isAvailable": false
+    },
+    {
+      "startTime": "20:00",
+      "endTime": "21:00",
+      "price": 1200,
+      "isAvailable": true
+    },
+    {
+      "startTime": "21:00",
+      "endTime": "22:00",
+      "price": 1200,
+      "isAvailable": true
+    }
+  ]
+}
