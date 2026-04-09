@@ -34,17 +34,6 @@ const UnderReview = () => {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-8 w-full pt-8 border-t border-white/5 opacity-40">
-                            <div className="text-left">
-                                <span className="block text-[8px] font-mono text-zinc-600 uppercase mb-1">Queue Status</span>
-                                <span className="text-[10px] font-bold text-secondary uppercase tracking-widest">Priority Phase 1</span>
-                            </div>
-                            <div className="text-right">
-                                <span className="block text-[8px] font-mono text-zinc-600 uppercase mb-1">Expected Sync</span>
-                                <span className="text-[10px] font-bold text-white uppercase tracking-widest">12 - 24 Hours</span>
-                            </div>
-                        </div>
-
                         <button 
                             onClick={() => window.location.href = '/'}
                             className="mt-8 px-8 py-3 border border-white/10 text-white font-display font-bold text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-500"

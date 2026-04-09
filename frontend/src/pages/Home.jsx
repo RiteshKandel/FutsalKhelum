@@ -48,22 +48,6 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
-            
-            <div className="absolute top-12 left-12 hidden lg:block opacity-30">
-                <div className="text-primary font-mono text-[10px] space-y-1">
-                    <p>SYST_LOD: 0.84</p>
-                    <p>GRID_STS: NOMINAL</p>
-                    <p>CNCT_ID: F_KH_99</p>
-                </div>
-            </div>
-            <div className="absolute bottom-12 right-12 hidden lg:block opacity-30">
-                <div className="text-primary font-mono text-[10px] space-y-1 text-right">
-                    <p>LAT: 27.7172 N</p>
-                    <p>LON: 85.3240 E</p>
-                    <p>T-MT: {new Date().toLocaleTimeString()}</p>
-                </div>
-            </div>
         </div>
     );
 };

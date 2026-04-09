@@ -60,10 +60,6 @@ const Search = () => {
                         onChange={(e) => setSearch(e.target.value)}
                         className="mb-4"
                     />
-                    <div className="flex items-center justify-between mb-4">
-                        <span className="text-[10px] text-gray-500 font-mono uppercase">{activeFutsals.length} grounds found</span>
-                        <span className="text-[10px] text-primary font-mono uppercase">{activeFutsals.filter(f => f.location?.coordinates?.[0]).length} on map</span>
-                    </div>
                 </div>
 
                 

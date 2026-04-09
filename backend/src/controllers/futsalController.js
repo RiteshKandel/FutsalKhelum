@@ -36,7 +36,7 @@ export const createFutsal = async (req, res, next) => {
 
 export const getFutsals = async (req, res, next) => {
     try {
-        const futsals = await FutsalGround.find({ isVerified: true, isListed: true });
+        const futsals = await FutsalGround.find({ isVerified: true, isListed: true, isBlocked: { $ne: true } });
 
         res.status(200).json({
             status: 'success',
@@ -62,6 +62,7 @@ export const getNearbyFutsals = async (req, res, next) => {
         const futsals = await FutsalGround.find({
             isVerified: true,
             isListed: true,
+            isBlocked: { $ne: true },
             location: {
                 $near: {
                     $geometry: {
@@ -204,6 +205,41 @@ export const updateMyFutsal = async (req, res, next) => {
 
         res.status(200).json({
             status: 'success',
+            data: futsal
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const getAdminFutsals = async (req, res, next) => {
+    try {
+        const futsals = await FutsalGround.find({ isVerified: true }).populate('ownerId', 'name email phone');
+
+        res.status(200).json({
+            status: 'success',
+            count: futsals.length,
+            data: futsals
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const toggleBlockFutsal = async (req, res, next) => {
+    try {
+        const futsal = await FutsalGround.findById(req.params.id);
+        
+        if (!futsal) {
+            return res.status(404).json({ status: 'error', message: 'Futsal ground not found' });
+        }
+
+        futsal.isBlocked = !futsal.isBlocked;
+        await futsal.save();
+
+        res.status(200).json({
+            status: 'success',
+            message: `Futsal has been ${futsal.isBlocked ? 'blocked' : 'unblocked'} successfully.`,
             data: futsal
         });
     } catch (error) {

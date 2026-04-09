@@ -61,6 +61,10 @@ const futsalGroundSchema = new mongoose.Schema({
     isListed: {
         type: Boolean,
         default: false 
+    },
+    isBlocked: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true });
 

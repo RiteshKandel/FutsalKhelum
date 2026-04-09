@@ -49,7 +49,10 @@ const Navbar = () => {
                             </>
                         )}
                         {user.role === 'ADMIN' && (
-                            <Link to="/admin/dashboard" className="hidden md:block hover:text-primary transition-colors">Admin Hub</Link>
+                            <>
+                                <Link to="/admin/dashboard" className="hidden md:block hover:text-primary transition-colors">Admin Hub</Link>
+                                <Link to="/admin/manage-futsals" className="hidden md:block hover:text-primary transition-colors">Manage Futsals</Link>
+                            </>
                         )}
                         <button 
                             onClick={handleLogout}

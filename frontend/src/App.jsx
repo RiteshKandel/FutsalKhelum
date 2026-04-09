@@ -12,6 +12,7 @@ import CustomerSettings from './pages/customer/CustomerSettings';
 import OwnerDashboard from './pages/owner/OwnerDashboard';
 import OwnerManageBookings from './pages/owner/OwnerManageBookings';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminManageFutsals from './pages/admin/AdminManageFutsals';
 import UnderReview from './pages/owner/UnderReview';
 import OwnerSettings from './pages/owner/OwnerSettings';
 import Home from './pages/Home';
@@ -48,6 +49,7 @@ function App() {
             
             <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/manage-futsals" element={<AdminManageFutsals />} />
             </Route>
           </Routes>
         </main>

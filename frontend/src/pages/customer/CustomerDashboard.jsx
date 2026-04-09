@@ -71,10 +71,6 @@ const CustomerDashboard = () => {
                             onChange={(e) => setSearch(e.target.value)}
                             className="mb-3"
                         />
-                        <div className="flex items-center justify-between">
-                            <span className="text-[10px] text-gray-500 font-mono uppercase">{activeFutsals.length} grounds found</span>
-                            {userPos && <span className="text-[8px] text-primary font-mono uppercase tracking-widest animate-pulse">Location Active</span>}
-                        </div>
                     </div>
 
                     <div className="flex-grow overflow-y-auto px-6 pb-6 space-y-3">
