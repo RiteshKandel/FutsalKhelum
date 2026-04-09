@@ -4,7 +4,7 @@ import OTP from '../models/OTP.js';
 import FutsalGround from '../models/FutsalGround.js';
 import { sendEmail } from '../services/email.js';
 
-// Generate Token
+
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN
@@ -26,7 +26,7 @@ export const register = async (req, res) => {
             return res.status(400).json({ status: 'error', message: 'User already exists and is verified. Please login.' });
         }
         
-        // Update unverified user details
+        
         existingUser.name = name;
         existingUser.password = password;
         existingUser.role = role;
@@ -46,7 +46,7 @@ export const register = async (req, res) => {
         });
     }
 
-    // If Owner, create a FutsalGround entry
+    
     if (role === 'OWNER') {
         const existingGround = await FutsalGround.findOne({ ownerId: user._id });
         if (!existingGround) {
@@ -58,11 +58,11 @@ export const register = async (req, res) => {
                     type: 'Point',
                     coordinates: [lng || 0, lat || 0]
                 },
-                pricePerHour: 0, // Owner will update this later
+                pricePerHour: 0, 
                 isVerified: false
             });
         } else {
-            // Update existing ground if user is re-registering
+            
             existingGround.name = futsalName || existingGround.name;
             existingGround.address = address || existingGround.address;
             existingGround.location.coordinates = [lng || existingGround.location.coordinates[0], lat || existingGround.location.coordinates[1]];
@@ -71,14 +71,14 @@ export const register = async (req, res) => {
     }
 
     const otp = generateOtp();
-    // Clear old OTPs for this email
+    
     await OTP.deleteMany({ email });
     await OTP.create({ email, otp });
 
     const message = `Welcome to FutsalKhelum! Your verification OTP is: ${otp}. It will expire in 5 minutes.`;
     
-    // We don't await sendEmail so the user doesn't get blocked if ethereal email is not fully configured or slow.
-    // Or we handle error gracefully.
+    
+    
     try {
         await sendEmail({
             email: user.email,
@@ -115,7 +115,7 @@ export const verifyOtp = async (req, res) => {
     user.isVerified = true;
     await user.save();
     
-    // Delete all OTPs for this email after successful verification
+    
     await OTP.deleteMany({ email });
 
     const token = generateToken(user._id);
@@ -147,7 +147,7 @@ export const login = async (req, res) => {
 
     const token = generateToken(user._id);
     
-    // Don't send password in response
+    
     const userWithoutPassword = await User.findById(user._id);
 
     res.status(200).json({
@@ -157,9 +157,9 @@ export const login = async (req, res) => {
     });
 };
 
-// @desc    Update user profile
-// @route   PUT /api/v1/auth/profile
-// @access  Private
+
+
+
 export const updateProfile = async (req, res) => {
     try {
         const { name, phone } = req.body;

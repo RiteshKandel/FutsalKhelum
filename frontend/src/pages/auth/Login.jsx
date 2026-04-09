@@ -30,7 +30,7 @@ const Login = () => {
             }
 
             dispatch(loginSuccess({ user, token }));
-            // Redirect based on role
+            
             if (user.role === 'OWNER') navigate('/owner/dashboard');
             else if (user.role === 'ADMIN') navigate('/admin/dashboard');
             else navigate('/dashboard');
@@ -41,7 +41,7 @@ const Login = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-background px-4 py-20 relative overflow-hidden">
-            {/* Background Kinetic Accents */}
+            
             <div className="absolute bottom-0 left-0 w-1/2 h-full bg-secondary/5 skew-x-12 transform origin-bottom -translate-x-1/2 pointer-events-none"></div>
             
             <div className="relative z-10 w-full max-w-lg">

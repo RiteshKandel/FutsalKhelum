@@ -19,7 +19,7 @@ router.route('/')
 
 router.get('/nearby', getNearbyFutsals);
 
-// Static owner/admin routes must come before dynamic /:id parameter matching
+
 router.get('/pending', protect, authorize('ADMIN'), getPendingFutsals);
 router.route('/my')
     .get(protect, authorize('OWNER'), getMyFutsals)

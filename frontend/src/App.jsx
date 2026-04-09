@@ -31,21 +31,21 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/futsal/:id" element={<FutsalDetails />} />
             
-            {/* Protected Customer Routes */}
+            
             <Route element={<ProtectedRoute allowedRoles={['CUSTOMER']} />}>
               <Route path="/dashboard" element={<CustomerDashboard />} />
               <Route path="/my-bookings" element={<MyBookings />} />
               <Route path="/settings" element={<CustomerSettings />} />
             </Route>
 
-            {/* Protected Owner Routes */}
+            
             <Route element={<ProtectedRoute allowedRoles={['OWNER']} />}>
               <Route path="/owner/dashboard" element={<OwnerDashboard />} />
               <Route path="/owner/bookings" element={<OwnerManageBookings />} />
               <Route path="/owner/settings" element={<OwnerSettings />} />
             </Route>
 
-            {/* Protected Admin Routes */}
+            
             <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
             </Route>

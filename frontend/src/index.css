@@ -30,7 +30,7 @@
   }
 }
 
-/* Kinetic Glass Effect - Improved Elevation */
+
 .kinetic-glass {
   background: rgba(40, 40, 39, 0.4);
   backdrop-filter: blur(16px);
@@ -54,7 +54,7 @@
 }
 
 
-/* Hide Google Maps Default InfoWindow Frame */
+
 .gm-style-iw {
     background: transparent !important;
     box-shadow: none !important;
@@ -80,7 +80,7 @@
     box-shadow: none !important;
 }
 
-/* Custom Marker Labels */
+
 .marker-label {
     background: rgba(0, 0, 0, 0.9) !important;
     border: 1px solid #CCFF00 !important;

@@ -34,7 +34,7 @@ const OwnerManageBookings = () => {
                 const bRes = await api.get('/bookings');
                 const all = bRes.data.data || [];
                 setAllBookings(all);
-                // Only fetch slots for present/future dates
+                
                 if (!isPastDate) {
                     const sRes = await api.get('/bookings/slots', { params: { futsalId: ground._id, date: selectedDate } });
                     setSlots(sRes.data.data || []);
@@ -59,14 +59,14 @@ const OwnerManageBookings = () => {
 
     const pendingBookings = allBookings.filter(b => b.status === 'PENDING');
 
-    // Bookings for the selected date (for past view)
+    
     const selectedDateBookings = allBookings.filter(b => {
         const bd = new Date(b.date);
         const sd = new Date(selectedDate);
         return bd.toDateString() === sd.toDateString();
     });
 
-    // Find booking for a specific slot on the selected date
+    
     const getBookingForSlot = (slot) => {
         return allBookings.find(b => {
             const bd = new Date(b.date);
@@ -109,19 +109,19 @@ const OwnerManageBookings = () => {
     return (
         <div className="max-w-6xl mx-auto px-4 py-8 space-y-10">
 
-            {/* Header */}
+            
             <header>
                 <h1 className="text-4xl font-black text-white uppercase tracking-tighter">Manage Bookings</h1>
                 <p className="text-gray-500 text-xs font-mono mt-1 uppercase">{ground?.name} — Owner Control Panel</p>
             </header>
 
-            {/* ─── SECTION 1: Owner Slot Booking ─── */}
+            
             <section className="space-y-5">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <h2 className="text-xl font-black text-white uppercase tracking-[0.1em] border-l-4 border-primary pl-4">
                         {isPastDate ? 'Past Booking History' : 'Book Slots'}
                     </h2>
-                    {/* Elevated Date Selector */}
+                    
                     <div className="relative">
                         <label className="block text-[9px] text-primary font-black uppercase tracking-[0.25em] mb-1.5">Select Date</label>
                         <div className="relative shadow-[0_8px_30px_rgba(0,0,0,0.5)] ring-1 ring-primary/20 rounded-sm">
@@ -140,7 +140,7 @@ const OwnerManageBookings = () => {
                 </div>
 
                 {isPastDate ? (
-                    // ── PAST DATE: Read-only history view ──
+                    
                     <>
                         <div className="flex items-center gap-2 mb-2">
                             <span className="text-[9px] bg-gray-800 text-gray-400 font-black uppercase px-2 py-0.5 tracking-widest">READ ONLY — HISTORICAL DATA</span>
@@ -212,7 +212,7 @@ const OwnerManageBookings = () => {
                     </div>
                 )}
 
-                {/* Book Slot Confirmation Banner */}
+                
                 {bookingSlot && (
                     <div className="flex items-center gap-4 p-4 border border-primary/40 bg-primary/5 animate-in fade-in duration-200">
                         <div className="flex-1">
@@ -230,7 +230,7 @@ const OwnerManageBookings = () => {
                     </div>
                 )}
 
-                {/* Booked Slot Details Panel */}
+                
                 {selectedBooking && (
                     <div className="p-5 border border-red-500/30 bg-red-500/[0.04] animate-in fade-in duration-200 relative">
                         <button
@@ -275,7 +275,7 @@ const OwnerManageBookings = () => {
 
             <div className="h-px bg-white/5"></div>
 
-            {/* ─── SECTION 2: Pending Player Requests ─── */}
+            
             <section className="space-y-5">
                 <div className="flex items-center gap-3">
                     {pendingBookings.length > 0 && (

@@ -12,7 +12,7 @@ const futsalGroundSchema = new mongoose.Schema({
         required: true
     },
     images: [{
-        type: String, // URLs to images
+        type: String, 
     }],
     pricePerHour: {
         type: Number,
@@ -25,7 +25,7 @@ const futsalGroundSchema = new mongoose.Schema({
             required: true
         },
         coordinates: {
-            type: [Number], // [longitude, latitude]
+            type: [Number], 
             required: true
         }
     },
@@ -35,7 +35,7 @@ const futsalGroundSchema = new mongoose.Schema({
     },
     isVerified: {
         type: Boolean,
-        default: false // Requires admin approval to show up on the map
+        default: false 
     },
     facilities: [{
         type: String
@@ -52,19 +52,19 @@ const futsalGroundSchema = new mongoose.Schema({
         default: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     },
     specialPricing: [{
-        label: { type: String },       // e.g. "Saturday Rate", "Night Game"
-        startTime: { type: String },    // e.g. "18:00"
-        endTime: { type: String },      // e.g. "22:00"
-        day: { type: String },          // e.g. "Sat" or "ALL"
+        label: { type: String },       
+        startTime: { type: String },    
+        endTime: { type: String },      
+        day: { type: String },          
         pricePerHour: { type: Number }
     }],
     isListed: {
         type: Boolean,
-        default: false // Owner flips this after completing schedule setup
+        default: false 
     }
 }, { timestamps: true });
 
-// Index for geospatial queries
+
 futsalGroundSchema.index({ location: '2dsphere' });
 
 const FutsalGround = mongoose.model('FutsalGround', futsalGroundSchema);

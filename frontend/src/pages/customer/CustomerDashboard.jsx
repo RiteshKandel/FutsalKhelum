@@ -27,7 +27,7 @@ const CustomerDashboard = () => {
     useEffect(() => {
         dispatch(fetchFutsals());
 
-        // Geolocation
+        
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((pos) => {
                 const { latitude, longitude } = pos.coords;
@@ -36,7 +36,7 @@ const CustomerDashboard = () => {
                     .then(res => setNearby(res.data.data))
                     .catch(() => { });
             }, () => {
-                // If denied, use all futsals
+                
             });
         }
     }, [dispatch]);
@@ -57,7 +57,7 @@ const CustomerDashboard = () => {
     return (
         <div className="flex flex-col h-[calc(100vh-73px)] bg-background">
             <div className="flex flex-grow overflow-hidden">
-                {/* Sidebar */}
+                
                 <div className="w-full md:w-[400px] bg-surface-low border-r border-white/5 flex flex-col overflow-hidden">
                     <div className="p-6 pb-3">
                         <header className="mb-6">
@@ -93,7 +93,7 @@ const CustomerDashboard = () => {
                                             ? 'bg-primary/5 border-primary/40 shadow-[0_10px_30px_rgba(204,255,0,0.15)] ring-1 ring-primary/20' 
                                             : 'hover:bg-white/[0.02] hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)]'
                                     }`}>
-                                        {/* Hover Glow Effect */}
+                                        
                                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-primary/5 via-transparent to-transparent transition-opacity duration-500 pointer-events-none"></div>
                                                                                 <div className="flex justify-between items-start">
                                             <h3 className="font-display font-bold text-white group-hover:text-primary transition-colors uppercase tracking-tight text-sm">{futsal.name}</h3>
@@ -117,7 +117,7 @@ const CustomerDashboard = () => {
                     </div>
                 </div>
 
-                {/* Map */}
+                
                 <div className="flex-grow bg-black relative overflow-hidden hidden md:block">
                     {isLoaded ? (
                         <GoogleMap

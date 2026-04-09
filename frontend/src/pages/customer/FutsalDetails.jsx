@@ -24,7 +24,7 @@ const FutsalDetails = () => {
         dispatch(fetchFutsalDetails(id));
     }, [dispatch, id]);
 
-    // Fetch slots when date changes
+    
     useEffect(() => {
         if (!bookingDate || !id) return;
         
@@ -68,7 +68,7 @@ const FutsalDetails = () => {
                 : 'Booking Pending! Please wait for owner confirmation in My Bookings.';
             setBookingSuccess(successMsg);
             setSelectedSlot(null);
-            // Refresh slots to show the newly booked slot as unavailable
+            
             const slotsRes = await api.get('/bookings/slots', { params: { futsalId: id, date: bookingDate } });
             setSlots(slotsRes.data.data);
         } else {
@@ -81,7 +81,7 @@ const FutsalDetails = () => {
     return (
         <div className="max-w-6xl mx-auto px-4 py-12">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                {/* Details Section */}
+                
                 <div className="lg:col-span-2 space-y-8">
                     <div className="relative h-96 bg-gray-900 border border-gray-800 overflow-hidden group">
                         <img 
@@ -142,12 +142,12 @@ const FutsalDetails = () => {
                     )}
                 </div>
 
-                {/* Booking Sidebar */}
+                
                 <div className="space-y-6">
                     <Card className="sticky top-28 border-2 border-primary bg-black shadow-[0_0_30px_rgba(204,255,0,0.1)]">
                         <h3 className="text-2xl font-black text-white mb-6 uppercase tracking-tighter">Book a Slot</h3>
                         
-                        {/* Date Picker */}
+                        
                         <Input 
                             label="Booking Date" 
                             type="date" 
@@ -158,7 +158,7 @@ const FutsalDetails = () => {
                             max={new Date(new Date().setDate(new Date().getDate() + 21)).toISOString().split('T')[0]}
                         />
                         
-                        {/* Slot Grid */}
+                        
                         {bookingDate && (
                             <div className="mt-6">
                                 <span className="block text-[10px] text-gray-500 uppercase font-bold mb-3">Available Time Slots</span>
@@ -196,7 +196,7 @@ const FutsalDetails = () => {
                             </div>
                         )}
 
-                        {/* Summary & Confirm */}
+                        
                         {selectedSlot && (
                             <div className="border-t border-gray-800 pt-4 mt-6">
                                 <div className="flex justify-between items-center mb-2">

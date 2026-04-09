@@ -34,7 +34,7 @@ const MyBookings = () => {
                         .sort((a, b) => new Date(b.date) - new Date(a.date))
                         .map((booking, idx) => (
                         <Card key={booking._id} className="relative group overflow-hidden border-2 border-white/5 hover:border-primary/30 transition-all duration-500 bg-surface-low">
-                            {/* Decorative elements */}
+                            
                             <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 -mr-10 -mt-10 rotate-45 group-hover:bg-primary/10 transition-colors"></div>
                             
                             <div className="relative z-10 p-6">

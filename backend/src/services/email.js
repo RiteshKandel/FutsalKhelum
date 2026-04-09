@@ -30,7 +30,7 @@ export const sendEmail = async (options) => {
 
         const info = await mailTransporter.sendMail(message);
         logger.info(`Message sent: ${info.messageId}`);
-        // If ethereal, logging the URL is helpful
+        
         if (process.env.SMTP_HOST === 'smtp.ethereal.email') {
             logger.info(`Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
         }

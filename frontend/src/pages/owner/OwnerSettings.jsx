@@ -10,13 +10,13 @@ const OwnerSettings = () => {
     const { user, token } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
-    // ── Profile state ──
+    
     const [profileName, setProfileName] = useState(user?.name || '');
     const [profilePhone, setProfilePhone] = useState(user?.phone || '');
     const [profileSaving, setProfileSaving] = useState(false);
     const [profileMsg, setProfileMsg] = useState(null);
 
-    // ── Ground config state ──
+    
     const [ground, setGround] = useState(null);
     const [loading, setLoading] = useState(true);
     const [pricePerHour, setPricePerHour] = useState(0);
@@ -120,7 +120,7 @@ const OwnerSettings = () => {
                 <p className="text-gray-500 text-xs font-mono mt-1 uppercase">{ground?.name}</p>
             </header>
 
-            {/* ─── SECTION 1: Edit Profile ─── */}
+            
             <section className="space-y-5">
                 <h2 className="text-xl font-black text-white uppercase tracking-[0.1em] border-l-4 border-primary pl-4">
                     Edit Profile
@@ -159,7 +159,7 @@ const OwnerSettings = () => {
 
             <div className="h-px bg-white/5"></div>
 
-            {/* ─── SECTION 2: Ground Configuration ─── */}
+            
             <section className="space-y-5">
                 <div className="flex items-center justify-between">
                     <h2 className="text-xl font-black text-white uppercase tracking-[0.1em] border-l-4 border-secondary pl-4">
@@ -177,14 +177,14 @@ const OwnerSettings = () => {
                 </div>
 
                 <Card className="p-8 space-y-8">
-                    {/* Pricing & Hours */}
+                    
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <Input label="Base Price / hr (Rs.)" type="number" value={pricePerHour} onChange={(e) => setPricePerHour(e.target.value)} min={0} />
                         <Input label="Opening Time" type="time" value={openTime} onChange={(e) => setOpenTime(e.target.value)} />
                         <Input label="Closing Time" type="time" value={closeTime} onChange={(e) => setCloseTime(e.target.value)} />
                     </div>
 
-                    {/* Operating Days */}
+                    
                     <div>
                         <span className="block text-[10px] text-gray-500 uppercase font-bold tracking-[0.2em] mb-3">Operating Days</span>
                         <div className="flex flex-wrap gap-2">
@@ -200,7 +200,7 @@ const OwnerSettings = () => {
                         </div>
                     </div>
 
-                    {/* Special Pricing */}
+                    
                     <div>
                         <div className="flex justify-between items-center mb-4">
                             <span className="text-[10px] text-gray-500 uppercase font-bold tracking-[0.2em]">Special Pricing Rules</span>
@@ -216,11 +216,11 @@ const OwnerSettings = () => {
                             {specialPricing.map((sp, i) => (
                                 <div key={i} className="bg-zinc-900/60 border border-gray-800 p-6 rounded relative group hover:border-primary/30 transition-all">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5 items-end">
-                                        {/* Label */}
+                                        
                                         <div className="lg:col-span-3">
                                             <Input label="Label" value={sp.label} onChange={(e) => updateSP(i, 'label', e.target.value)} placeholder="Night Rate" />
                                         </div>
-                                        {/* Day Select */}
+                                        
                                         <div className="lg:col-span-2">
                                             <span className="block text-[10px] text-gray-500 uppercase font-bold mb-2">Day</span>
                                             <select value={sp.day} onChange={(e) => updateSP(i, 'day', e.target.value)}
@@ -229,14 +229,14 @@ const OwnerSettings = () => {
                                                 {DAYS.map((d) => <option key={d} value={d}>{d}</option>)}
                                             </select>
                                         </div>
-                                        {/* Time Inputs */}
+                                        
                                         <div className="lg:col-span-2">
                                             <Input label="From" type="time" value={sp.startTime} onChange={(e) => updateSP(i, 'startTime', e.target.value)} />
                                         </div>
                                         <div className="lg:col-span-2">
                                             <Input label="To" type="time" value={sp.endTime} onChange={(e) => updateSP(i, 'endTime', e.target.value)} />
                                         </div>
-                                        {/* Price + Delete Button */}
+                                        
                                         <div className="lg:col-span-3 flex gap-2 items-end">
                                             <div className="flex-1 min-w-0">
                                                 <Input label="Rs./hr" type="number" value={sp.pricePerHour} onChange={(e) => updateSP(i, 'pricePerHour', e.target.value)} />

@@ -10,7 +10,7 @@ const mapContainerStyle = {
     height: '100%'
 };
 
-const center = { lat: 27.7172, lng: 85.3240 }; // Kathmandu default
+const center = { lat: 27.7172, lng: 85.3240 }; 
 
 const Search = () => {
     const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const Search = () => {
 
     return (
         <div className="flex flex-col md:flex-row h-[calc(100vh-73px)] bg-background">
-            {/* Sidebar */}
+            
             <div className="w-full md:w-[420px] bg-surface-low border-r border-white/5 flex flex-col overflow-hidden">
                 <div className="p-8 pb-0">
                     <header className="mb-6">
@@ -66,7 +66,7 @@ const Search = () => {
                     </div>
                 </div>
 
-                {/* Scrollable Futsal List */}
+                
                 <div className="flex-grow overflow-y-auto px-8 pb-8 space-y-4">
                     {loading ? (
                         <div className="flex items-center space-x-3 text-primary animate-pulse font-display font-bold uppercase tracking-widest text-[10px]">
@@ -83,7 +83,7 @@ const Search = () => {
                                         ? 'bg-primary/5 border-primary/40 shadow-[0_10px_30px_rgba(204,255,0,0.15)] ring-1 ring-primary/20' 
                                         : 'hover:bg-white/[0.02] hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)]'
                                 }`}>
-                                    {/* Hover Glow Effect */}
+                                    
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-primary/5 via-transparent to-transparent transition-opacity duration-500 pointer-events-none"></div>
                                     
                                     <div className="flex justify-between items-start">
@@ -92,7 +92,7 @@ const Search = () => {
                                     </div>
                                     <p className="text-[10px] text-gray-500 mt-1 font-mono uppercase tracking-tighter opacity-60">{futsal.address}</p>
                                     
-                                    {/* Operating info */}
+                                    
                                     <div className="mt-3 flex items-center gap-4 text-[9px] text-gray-600 font-mono">
                                         <span>🕐 {futsal.operatingHours?.open || '06:00'}-{futsal.operatingHours?.close || '22:00'}</span>
                                         <span>📅 {futsal.operatingDays?.length === 7 ? 'All Days' : futsal.operatingDays?.join(', ')}</span>
@@ -115,7 +115,7 @@ const Search = () => {
                 </div>
             </div>
 
-            {/* Map Section */}
+            
             <div className="flex-grow bg-black relative overflow-hidden">
                 {!isLoaded ? (
                     <>

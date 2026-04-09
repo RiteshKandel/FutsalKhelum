@@ -4,7 +4,7 @@ import { Button } from '../components/ui';
 const Home = () => {
     return (
         <div className="relative min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center text-center px-4">
-            {/* Background scanline effect */}
+            
             <div className="absolute inset-0 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-primary/5 via-transparent to-black"></div>
 
@@ -49,7 +49,7 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* Corner HUD elements */}
+            
             <div className="absolute top-12 left-12 hidden lg:block opacity-30">
                 <div className="text-primary font-mono text-[10px] space-y-1">
                     <p>SYST_LOD: 0.84</p>

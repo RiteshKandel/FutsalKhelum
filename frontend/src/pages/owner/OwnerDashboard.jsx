@@ -14,7 +14,7 @@ const OwnerDashboard = () => {
     const [bookingSlot, setBookingSlot] = useState(null);
     const [selectedBooking, setSelectedBooking] = useState(null);
 
-    // Config form state
+    
     const [pricePerHour, setPricePerHour] = useState(0);
     const [openTime, setOpenTime] = useState('06:00');
     const [closeTime, setCloseTime] = useState('22:00');
@@ -35,13 +35,13 @@ const OwnerDashboard = () => {
                     setCloseTime(g.operatingHours?.close || '22:00');
                     setOperatingDays(g.operatingDays || [...DAYS]);
                     setSpecialPricing(g.specialPricing || []);
-                    // Fetch today's slots + bookings
+                    
                     const [sRes, bRes] = await Promise.all([
                         api.get('/bookings/slots', { params: { futsalId: g._id, date: today } }),
                         api.get('/bookings')
                     ]);
                     setTodaySlots(sRes.data.data || []);
-                    // Use string comparison to avoid timezone offset issues
+                    
                     setTodayBookings((bRes.data.data || []).filter(b => {
                         return new Date(b.date).toISOString().split('T')[0] === today;
                     }));
@@ -64,7 +64,7 @@ const OwnerDashboard = () => {
                 startTime: slot.startTime,
                 endTime: slot.endTime
             });
-            // Refresh slots and bookings
+            
             const [sRes, bRes] = await Promise.all([
                 api.get('/bookings/slots', { params: { futsalId: ground._id, date: today } }),
                 api.get('/bookings')
@@ -120,7 +120,7 @@ const OwnerDashboard = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
-            {/* Header */}
+            
             <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
                     <h1 className="text-3xl font-black text-white uppercase tracking-tighter">{ground?.name || 'My Futsal'}</h1>
@@ -136,7 +136,7 @@ const OwnerDashboard = () => {
                 </a>
             </header>
 
-            {/* Stats Row */}
+            
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <Card className="border-l-4 border-l-primary px-4 py-3">
                     <span className="text-[10px] text-gray-500 uppercase font-bold block">Today's Bookings</span>
@@ -157,7 +157,7 @@ const OwnerDashboard = () => {
             </div>
 
 
-            {/* Today's Slots Grid */}
+            
             <div>
                 <h2 className="text-xl font-black text-white uppercase tracking-tighter mb-4 border-l-4 border-primary pl-4">
                     Today's Schedule <span className="text-gray-500 text-sm font-mono ml-2">{new Date().toLocaleDateString()}</span>
@@ -206,7 +206,7 @@ const OwnerDashboard = () => {
                     </div>
                 )}
 
-                {/* Book Slot Confirmation */}
+                
                 {bookingSlot && (
                     <div className="mt-4 flex items-center gap-4 p-4 border border-primary/30 bg-primary/5 animate-in fade-in duration-200">
                         <span className="text-white font-bold text-sm flex-1">
@@ -217,7 +217,7 @@ const OwnerDashboard = () => {
                     </div>
                 )}
 
-                {/* Booked Slot Details Panel */}
+                
                 {selectedBooking && (
                     <div className="mt-4 p-5 border border-red-500/30 bg-red-500/5 animate-in fade-in duration-200 relative">
                         <button

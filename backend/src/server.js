@@ -9,7 +9,7 @@ dotenv.config();
 
 const server = http.createServer(app);
 
-// Initialize Socket.io
+
 initSocket(server);
 
 const PORT = process.env.PORT || 5000;

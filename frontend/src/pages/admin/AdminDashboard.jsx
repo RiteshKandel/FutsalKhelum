@@ -21,7 +21,7 @@ const AdminDashboard = () => {
     const [expandedId, setExpandedId] = useState(null);
     const [markerPositions, setMarkerPositions] = useState({});
     const [selectedMarker, setSelectedMarker] = useState(null);
-    const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'pending'
+    const [activeTab, setActiveTab] = useState('overview'); 
 
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
@@ -37,7 +37,7 @@ const AdminDashboard = () => {
                 setPendingFutsals(pendingRes.data.data);
                 setAllFutsals(allRes.data.data);
 
-                // Init marker positions for pending futsals
+                
                 const positions = {};
                 pendingRes.data.data.forEach(f => {
                     if (f.location?.coordinates?.[0] && f.location?.coordinates?.[1]) {
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
             await api.put(`/futsals/${id}/verify`, position ? { lat: position.lat, lng: position.lng } : {});
             alert('Futsal authorized!');
             setPendingFutsals(pendingFutsals.filter(o => o._id !== id));
-            // Refresh all futsals
+            
             const res = await api.get('/futsals');
             setAllFutsals(res.data.data);
         } catch (err) {
@@ -73,7 +73,7 @@ const AdminDashboard = () => {
 
     return (
         <div className="flex flex-col h-[calc(100vh-73px)]">
-            {/* Top Tab Bar */}
+            
             <div className="bg-surface-low border-b border-white/5 px-6 py-3 flex items-center gap-6 shrink-0">
                 <div className="flex-grow">
                     <h1 className="text-xl font-black text-white uppercase tracking-tighter inline mr-6">Admin Hub</h1>
@@ -88,7 +88,7 @@ const AdminDashboard = () => {
 
             {activeTab === 'overview' ? (
                 <div className="flex flex-grow overflow-hidden">
-                    {/* Sidebar: All Futsals */}
+                    
                     <div className="w-full md:w-[420px] bg-surface-low border-r border-white/5 overflow-y-auto p-6 space-y-3">
                         {allFutsals.length === 0 ? (
                             <p className="text-gray-500 italic text-xs">No listed futsals yet.</p>
@@ -112,7 +112,7 @@ const AdminDashboard = () => {
                         )}
                     </div>
 
-                    {/* Map */}
+                    
                     <div className="flex-grow bg-black relative hidden md:block">
                         {isLoaded ? (
                             <GoogleMap

@@ -2,17 +2,17 @@ import FutsalGround from '../models/FutsalGround.js';
 import User from '../models/User.js';
 
 
-// @desc    Create new futsal ground
-// @route   POST /api/v1/futsals
-// @access  Private (Owner)
+
+
+
 export const createFutsal = async (req, res, next) => {
     try {
         req.body.ownerId = req.user.id;
         
-        // ensure owner doesn't fake activation
+        
         req.body.isVerified = false;
 
-        // Ensure location is valid GeoJSON Point
+        
         if (req.body.lng && req.body.lat) {
             req.body.location = {
                 type: 'Point',
@@ -31,9 +31,9 @@ export const createFutsal = async (req, res, next) => {
     }
 };
 
-// @desc    Get all verified futsal grounds (for customers)
-// @route   GET /api/v1/futsals
-// @access  Public
+
+
+
 export const getFutsals = async (req, res, next) => {
     try {
         const futsals = await FutsalGround.find({ isVerified: true, isListed: true });
@@ -48,12 +48,12 @@ export const getFutsals = async (req, res, next) => {
     }
 };
 
-// @desc    Get nearby futsals (GeoJSON)
-// @route   GET /api/v1/futsals/nearby
-// @access  Public
+
+
+
 export const getNearbyFutsals = async (req, res, next) => {
     try {
-        const { lng, lat, distance = 10 } = req.query; // distance in kilometers
+        const { lng, lat, distance = 10 } = req.query; 
 
         if (!lng || !lat) {
             return res.status(400).json({ status: 'error', message: 'Please provide longitude and latitude' });
@@ -68,7 +68,7 @@ export const getNearbyFutsals = async (req, res, next) => {
                         type: 'Point',
                         coordinates: [parseFloat(lng), parseFloat(lat)]
                     },
-                    $maxDistance: parseInt(distance) * 1000 // Convert to meters
+                    $maxDistance: parseInt(distance) * 1000 
                 }
             }
         });
@@ -83,9 +83,9 @@ export const getNearbyFutsals = async (req, res, next) => {
     }
 };
 
-// @desc    Get single futsal ground
-// @route   GET /api/v1/futsals/:id
-// @access  Public
+
+
+
 export const getFutsal = async (req, res, next) => {
     try {
         const futsal = await FutsalGround.findById(req.params.id).populate('ownerId', 'name email');
@@ -103,16 +103,16 @@ export const getFutsal = async (req, res, next) => {
     }
 };
 
-// @desc    Verify futsal ground
-// @route   PUT /api/v1/futsals/:id/verify
-// @access  Private (Admin)
+
+
+
 export const verifyFutsal = async (req, res, next) => {
     try {
         const { lat, lng } = req.body;
 
         const updateData = { isVerified: true };
 
-        // Admin can set/correct coordinates during verification
+        
         if (lat && lng) {
             updateData.location = {
                 type: 'Point',
@@ -130,7 +130,7 @@ export const verifyFutsal = async (req, res, next) => {
             return res.status(404).json({ status: 'error', message: 'Futsal ground not found' });
         }
 
-        // Sync: Approve the owner of this ground
+        
         await User.findByIdAndUpdate(futsal.ownerId, { isApproved: true });
 
         res.status(200).json({
@@ -142,9 +142,9 @@ export const verifyFutsal = async (req, res, next) => {
     }
 };
 
-// @desc    Get all pending futsal grounds
-// @route   GET /api/v1/futsals/pending
-// @access  Private (Admin)
+
+
+
 export const getPendingFutsals = async (req, res, next) => {
     try {
         const futsals = await FutsalGround.find({ isVerified: false }).populate('ownerId', 'name email phone');
@@ -159,9 +159,9 @@ export const getPendingFutsals = async (req, res, next) => {
     }
 };
 
-// @desc    Get owner's futsal ground
-// @route   GET /api/v1/futsals/my
-// @access  Private (Owner)
+
+
+
 export const getMyFutsals = async (req, res, next) => {
     try {
         const futsal = await FutsalGround.findOne({ ownerId: req.user.id });
@@ -177,9 +177,9 @@ export const getMyFutsals = async (req, res, next) => {
     }
 };
 
-// @desc    Update owner's futsal ground
-// @route   PUT /api/v1/futsals/my
-// @access  Private (Owner)
+
+
+
 export const updateMyFutsal = async (req, res, next) => {
     try {
         const { pricePerHour, facilities, description, name, operatingHours, operatingDays, specialPricing, isListed } = req.body;

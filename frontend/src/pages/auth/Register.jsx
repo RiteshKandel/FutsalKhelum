@@ -46,7 +46,7 @@ const Register = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-[calc(100vh-64px)] bg-background px-4 py-12 relative overflow-hidden">
-            {/* Background Kinetic Accents */}
+            
             <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 -skew-x-12 transform origin-top translate-x-1/2 pointer-events-none"></div>
             
             <div className="relative z-10 w-full max-w-2xl">

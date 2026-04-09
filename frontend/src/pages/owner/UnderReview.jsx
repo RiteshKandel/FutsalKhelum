@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const UnderReview = () => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-black px-4 relative overflow-hidden font-inter">
-            {/* Background Atmosphere */}
+            
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(204,255,0,0.05),transparent_70%)]"></div>
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
             

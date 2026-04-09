@@ -34,7 +34,7 @@ const CustomerSettings = () => {
 
     return (
         <div className="flex-grow overflow-y-auto p-6 max-w-3xl mx-auto w-full min-h-[calc(100vh-73px)]">
-            {/* Header */}
+            
             <header className="mb-10">
                 <h1 className="text-4xl font-display font-black text-white uppercase tracking-tighter border-l-4 border-primary pl-6">
                     My <span className="text-primary">Settings.</span>
@@ -44,13 +44,13 @@ const CustomerSettings = () => {
                 </p>
             </header>
 
-            {/* Profile Card */}
+            
             <section className="space-y-5">
                 <h2 className="text-sm font-black text-white uppercase tracking-[0.15em] border-l-4 border-primary pl-4">
                     Edit Profile
                 </h2>
                 <Card className="p-8 space-y-6">
-                    {/* Avatar placeholder */}
+                    
                     <div className="flex items-center gap-5">
                         <div className="w-16 h-16 bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0">
                             <span className="text-primary text-2xl font-black">

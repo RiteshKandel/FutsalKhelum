@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Password is required'],
         minlength: 6,
-        select: false // Exclude password by default in queries
+        select: false 
     },
     role: {
         type: String,
@@ -32,22 +32,22 @@ const userSchema = new mongoose.Schema({
     },
     isVerified: {
         type: Boolean,
-        default: false // For Customer/Owner email verification
+        default: false 
     },
     isApproved: {
         type: Boolean,
-        default: false // For Owner admin approval
+        default: false 
     }
 }, { timestamps: true });
 
-// Hash password before saving
+
 userSchema.pre('save', async function () {
     if (!this.isModified('password')) return;
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
 });
 
-// Method to check password
+
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
