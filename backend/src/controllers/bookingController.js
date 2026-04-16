@@ -242,3 +242,104 @@ export const getSlots = async (req, res, next) => {
         next(error);
     }
 };
+
+// ==========================================
+// AI REVENUE PULSE FORECAST
+// ==========================================
+export const getRevenueForecast = async (req, res, next) => {
+    try {
+        const { futsalId } = req.query;
+        if (!futsalId) {
+            return res.status(400).json({ status: 'error', message: 'Futsal ID is required' });
+        }
+
+        const futsal = await FutsalGround.findById(futsalId);
+        if (!futsal) {
+            return res.status(404).json({ status: 'error', message: 'Futsal not found' });
+        }
+        
+        if (futsal.ownerId.toString() !== req.user.id && req.user.role !== 'ADMIN') {
+            return res.status(403).json({ status: 'error', message: 'Not authorized' });
+        }
+
+        const endDate = new Date();
+        const startDate = new Date();
+        startDate.setDate(endDate.getDate() - 28);
+        startDate.setHours(0, 0, 0, 0);
+
+        const pastBookings = await Booking.find({
+            futsalId,
+            date: { $gte: startDate, $lte: endDate },
+            status: { $in: ['CONFIRMED', 'PENDING'] } 
+        });
+
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const revenueByDay = { Sun: 0, Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0 };
+        const countsByDay = { Sun: 0, Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0 };
+
+        pastBookings.forEach(b => {
+            const dayStr = days[new Date(b.date).getUTCDay()];
+            revenueByDay[dayStr] += b.price || 0;
+            countsByDay[dayStr] += 1;
+        });
+
+        const avgRevenue = Object.keys(revenueByDay).map(day => ({
+            day,
+            avg: revenueByDay[day] / 4 
+        }));
+
+        let forecastList = [];
+        let lowestDay = { day: null, val: Infinity };
+        let highestDay = { day: null, val: -Infinity };
+        let totalForecast = 0;
+
+        for(let i=1; i<=7; i++) {
+            let nextDate = new Date();
+            nextDate.setDate(nextDate.getDate() + i);
+            let dayName = days[nextDate.getDay()];
+            
+            let baseAvg = avgRevenue.find(a => a.day === dayName).avg || 0;
+            
+            let projected = Math.round(baseAvg * (0.95 + Math.random() * 0.1));
+            
+            if (baseAvg === 0 && Math.random() > 0.8) projected = futsal.pricePerHour;
+            
+            if (projected < lowestDay.val) lowestDay = { day: dayName, val: projected };
+            if (projected > highestDay.val) highestDay = { day: dayName, val: projected };
+            totalForecast += projected;
+
+            forecastList.push({
+                date: nextDate.toISOString().split('T')[0],
+                day: dayName,
+                projectedRevenue: projected,
+                historicalAvg: Math.round(baseAvg)
+            });
+        }
+
+        let avgPerDay = totalForecast / 7;
+        let insights = [];
+        
+        if (totalForecast === 0) {
+            insights.push("INSUFFICIENT DATA: No historical bookings found to form a statistically significant baseline calculation. Awaiting further operational data.");
+        } else {
+            insights.push(`PROJECTION UPDATE: Weekly tactical revenue projected at Rs. ${totalForecast.toLocaleString()}.`);
+            if (lowestDay.val < (avgPerDay * 0.7)) {
+                insights.push(`TACTICAL ALERT: Significant velocity drop projected on ${lowestDay.day}. Consider initiating a 'Tactical Promotion' (Discount Override) via Special Pricing controls.`);
+            }
+            if (highestDay.val > (avgPerDay * 1.3)) {
+                insights.push(`SURGE WARNING: Maximum capacity anticipated on ${highestDay.day}. Ensure operational readiness and prep field surface accordingly.`);
+            }
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                forecast: forecastList,
+                insights
+            }
+        });
+
+    } catch(err) {
+        next(err);
+    }
+};

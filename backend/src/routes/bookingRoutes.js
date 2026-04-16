@@ -3,16 +3,18 @@ import {
     createBooking, 
     getBookings, 
     updateBookingStatus,
-    getSlots
+    getSlots,
+    getRevenueForecast
 } from '../controllers/bookingController.js';
 import { protect, authorize } from '../middlewares/auth.js';
 
 const router = express.Router();
 
-
 router.get('/slots', getSlots);
 
 router.use(protect); 
+
+router.get('/forecast', authorize('OWNER', 'ADMIN'), getRevenueForecast);
 
 router.route('/')
     .get(getBookings)

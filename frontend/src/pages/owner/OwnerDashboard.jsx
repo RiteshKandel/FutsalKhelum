@@ -13,6 +13,7 @@ const OwnerDashboard = () => {
     const [saving, setSaving] = useState(false);
     const [bookingSlot, setBookingSlot] = useState(null);
     const [selectedBooking, setSelectedBooking] = useState(null);
+    const [forecastData, setForecastData] = useState(null);
 
     
     const [pricePerHour, setPricePerHour] = useState(0);
@@ -36,15 +37,20 @@ const OwnerDashboard = () => {
                     setOperatingDays(g.operatingDays || [...DAYS]);
                     setSpecialPricing(g.specialPricing || []);
                     
-                    const [sRes, bRes] = await Promise.all([
+                    const [sRes, bRes, fRes] = await Promise.all([
                         api.get('/bookings/slots', { params: { futsalId: g._id, date: today } }),
-                        api.get('/bookings')
+                        api.get('/bookings'),
+                        api.get('/bookings/forecast', { params: { futsalId: g._id } }).catch(() => ({ data: { data: null } }))
                     ]);
                     setTodaySlots(sRes.data.data || []);
                     
                     setTodayBookings((bRes.data.data || []).filter(b => {
                         return new Date(b.date).toISOString().split('T')[0] === today;
                     }));
+
+                    if (fRes.data?.data) {
+                        setForecastData(fRes.data.data);
+                    }
                 }
             } catch (err) {
                 console.error(err);
@@ -259,6 +265,73 @@ const OwnerDashboard = () => {
                     </div>
                 )}
             </div>
+
+            {/* AI REVENUE PULSE FORECAST SECTION */}
+            {forecastData && forecastData.forecast && (
+                <div className="mt-8 border-t border-gray-800 pt-8 animate-in fade-in duration-500">
+                    <h2 className="text-xl font-black text-white uppercase tracking-tighter mb-4 border-l-4 border-secondary pl-4 flex items-center gap-2">
+                        📈 REVENUE PULSE <span className="text-secondary text-[10px] px-2 py-0.5 bg-secondary/10 border border-secondary/30 rounded">AI FORECAST</span>
+                    </h2>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        
+                        <Card className="lg:col-span-2 p-6 border-secondary/20 bg-gradient-to-br from-secondary/5 to-transparent">
+                            <div className="flex h-48 items-end gap-2 justify-between">
+                                {forecastData.forecast.map((dayData, idx) => {
+                                    const maxVal = Math.max(1, ...forecastData.forecast.map(d => Math.max(d.projectedRevenue, d.historicalAvg)));
+                                    const pHeight = (dayData.projectedRevenue / maxVal) * 100;
+                                    const hHeight = (dayData.historicalAvg / maxVal) * 100;
+                                    
+                                    return (
+                                        <div key={idx} className="flex flex-col items-center flex-1 gap-2 group relative">
+                                            <div className="w-full flex justify-center items-end h-32 gap-1">
+                                                {/* Historical Bar (Dim) */}
+                                                <div 
+                                                    style={{ height: `${hHeight}%` }} 
+                                                    className="w-2 md:w-3 bg-gray-700 transition-all group-hover:bg-gray-500 rounded-t-sm"
+                                                    title={`Historical Avg: Rs. ${dayData.historicalAvg}`}
+                                                ></div>
+                                                {/* Projected Bar (Bright) */}
+                                                <div 
+                                                    style={{ height: `${pHeight}%` }} 
+                                                    className="w-2 md:w-3 bg-secondary transition-all group-hover:brightness-125 group-hover:shadow-[0_0_10px_#00D1FF] rounded-t-sm"
+                                                    title={`Projected: Rs. ${dayData.projectedRevenue}`}
+                                                ></div>
+                                            </div>
+                                            <span className="text-[10px] font-mono font-bold text-gray-400 group-hover:text-white uppercase">
+                                                {dayData.day}
+                                            </span>
+                                            
+                                            {/* Tooltip on hover */}
+                                            <div className="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-black border border-gray-800 p-2 text-[9px] font-mono z-10 whitespace-nowrap pointer-events-none rounded shadow-xl">
+                                                <div className="text-secondary">Proj: Rs. {dayData.projectedRevenue}</div>
+                                                <div className="text-gray-500">Hist: Rs. {dayData.historicalAvg}</div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                            <div className="mt-4 flex gap-4 justify-center text-[10px] font-mono text-gray-500 uppercase">
+                                <span className="flex items-center gap-1"><div className="w-2 h-2 bg-gray-700 rounded-sm"></div> Historical</span>
+                                <span className="flex items-center gap-1"><div className="w-2 h-2 bg-secondary rounded-sm"></div> AI Projected</span>
+                            </div>
+                        </Card>
+
+                        <Card className="p-6 border-secondary/40 bg-secondary/5 h-full">
+                            <h3 className="text-sm font-black text-white uppercase tracking-widest mb-4 border-b border-secondary/20 pb-2">Tactical Insights</h3>
+                            <ul className="space-y-4">
+                                {forecastData.insights.map((insight, idx) => (
+                                    <li key={idx} className="flex gap-3 text-sm text-gray-300">
+                                        <span className="text-secondary mt-0.5">⚡</span>
+                                        <span className={insight.includes('ALERT') ? 'text-red-400 font-bold' : insight.includes('WARNING') ? 'text-yellow-400 font-bold' : ''}>
+                                            {insight}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </Card>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

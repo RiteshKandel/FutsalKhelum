@@ -89,3 +89,9 @@
 {"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-09T17:46:24.359Z"}
 {"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-09T17:46:47.921Z"}
 {"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-09T17:47:10.366Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-12T16:10:21.035Z"}
+{"level":"info","message":"Message sent: <6ae1e188-76c3-9e48-51ea-ffb3eb7f196b@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-12T16:13:24.594Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadvEpCl.9CxZuJRcAAAADPSOS1KYmgb3fBJVbxtB8k8","service":"futsalkhelum-api","timestamp":"2026-04-12T16:13:24.601Z"}
+{"level":"info","message":"Message sent: <e46297f5-9de4-5358-1ef5-f8aae86cd4df@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-12T16:17:33.923Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadvFneHwJ1INbQ4YAAAADStqkl3kGbOcSEtg-uDb7aA","service":"futsalkhelum-api","timestamp":"2026-04-12T16:17:33.927Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-16T17:35:02.487Z"}
