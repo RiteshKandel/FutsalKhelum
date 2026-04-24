@@ -1,8 +1,11 @@
 import jwt from 'jsonwebtoken';
+import { OAuth2Client } from 'google-auth-library';
 import User from '../models/User.js';
 import OTP from '../models/OTP.js';
 import FutsalGround from '../models/FutsalGround.js';
 import { sendEmail } from '../services/email.js';
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 
 const generateToken = (id) => {
@@ -158,6 +161,59 @@ export const login = async (req, res) => {
 };
 
 
+export const googleAuth = async (req, res) => {
+    try {
+        const { token } = req.body;
+        
+        // Verify Google ID token
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID
+        });
+        
+        const payload = ticket.getPayload();
+        const { sub, email, name, picture } = payload;
+        
+        let user = await User.findOne({ email }).select('+password');
+        
+        if (user) {
+            // Existing user, link googleId if it's not already linked
+            if (!user.googleId) {
+                user.googleId = sub;
+                // Since this user had a local account, we don't necessarily overwrite the authProvider to 'google'
+                // but we add the googleId to mark that they can also login with google.
+                await user.save();
+            }
+        } else {
+            // Create a new user for Google login
+            user = await User.create({
+                name,
+                email,
+                googleId: sub,
+                authProvider: 'google',
+                isVerified: true, // Google emails are already verified
+                role: 'CUSTOMER' // Default role for new signups via Google
+            });
+        }
+        
+        // Check for admin approval if they happen to be an OWNER
+        if (user.role === 'OWNER' && !user.isApproved) {
+            return res.status(403).json({ status: 'error', message: 'Your account is pending admin approval' });
+        }
+        
+        const jwtToken = generateToken(user._id);
+        const userWithoutPassword = await User.findById(user._id);
+        
+        res.status(200).json({
+            status: 'success',
+            token: jwtToken,
+            data: userWithoutPassword
+        });
+    } catch (error) {
+        console.error('Google Auth Error:', error);
+        res.status(401).json({ status: 'error', message: 'Invalid Google token' });
+    }
+};
 
 
 export const updateProfile = async (req, res) => {

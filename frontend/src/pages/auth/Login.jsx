@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 import { loginStart, loginSuccess, loginFailure, clearAuth } from '../../store/slices/authSlice';
 import api from '../../services/api';
 import { Button, Input, Card } from '../../components/ui';
@@ -31,11 +32,42 @@ const Login = () => {
 
             dispatch(loginSuccess({ user, token }));
             
+            if (!user.phone) {
+                navigate('/complete-profile');
+                return;
+            }
+
             if (user.role === 'OWNER') navigate('/owner/dashboard');
             else if (user.role === 'ADMIN') navigate('/admin/dashboard');
             else navigate('/dashboard');
         } catch (err) {
             dispatch(loginFailure(err.response?.data?.message || 'Login Failed'));
+        }
+    };
+
+    const handleGoogleSuccess = async (credentialResponse) => {
+        dispatch(loginStart());
+        try {
+            const res = await api.post('/auth/google', { token: credentialResponse.credential });
+            const { token, data: user } = res.data;
+            
+            if (!user.isVerified) {
+                navigate(`/verify-otp?email=${user.email}`);
+                return;
+            }
+
+            dispatch(loginSuccess({ user, token }));
+            
+            if (!user.phone) {
+                navigate('/complete-profile');
+                return;
+            }
+
+            if (user.role === 'OWNER') navigate('/owner/dashboard');
+            else if (user.role === 'ADMIN') navigate('/admin/dashboard');
+            else navigate('/dashboard');
+        } catch (err) {
+            dispatch(loginFailure(err.response?.data?.message || 'Google Login Failed'));
         }
     };
 
@@ -79,6 +111,22 @@ const Login = () => {
                         <Button type="submit" disabled={loading} className="w-full text-lg py-5 mt-4">
                             {loading ? 'SIGNING IN...' : 'SIGN IN'}
                         </Button>
+                        
+                        <div className="flex items-center gap-4 my-6">
+                            <div className="flex-1 h-px bg-white/10"></div>
+                            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">OR</span>
+                            <div className="flex-1 h-px bg-white/10"></div>
+                        </div>
+
+                        <div className="flex justify-center">
+                            <GoogleLogin
+                                onSuccess={handleGoogleSuccess}
+                                onError={() => {
+                                    dispatch(loginFailure('Google Login Failed'));
+                                }}
+                                useOneTap
+                            />
+                        </div>
                     </form>
 
                     <p className="mt-10 text-center text-[10px] font-bold text-gray-500 uppercase tracking-widest">

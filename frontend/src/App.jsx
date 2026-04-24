@@ -16,6 +16,7 @@ import AdminManageFutsals from './pages/admin/AdminManageFutsals';
 import UnderReview from './pages/owner/UnderReview';
 import OwnerSettings from './pages/owner/OwnerSettings';
 import Home from './pages/Home';
+import CompleteProfile from './pages/auth/CompleteProfile';
 
 function App() {
   return (
@@ -28,6 +29,11 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/verify-otp" element={<VerifyOtp />} />
+            
+            <Route element={<ProtectedRoute requirePhone={false} />}>
+              <Route path="/complete-profile" element={<CompleteProfile />} />
+            </Route>
+
             <Route path="/under-review" element={<UnderReview />} />
             <Route path="/search" element={<Search />} />
             <Route path="/futsal/:id" element={<FutsalDetails />} />

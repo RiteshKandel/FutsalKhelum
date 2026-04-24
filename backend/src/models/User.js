@@ -16,14 +16,24 @@ const userSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
-        required: [true, 'Phone number is required'],
+        required: function() { return this.authProvider === 'local'; },
         trim: true
     },
     password: {
         type: String,
-        required: [true, 'Password is required'],
+        required: function() { return this.authProvider === 'local'; },
         minlength: 6,
         select: false 
+    },
+    authProvider: {
+        type: String,
+        enum: ['local', 'google'],
+        default: 'local'
+    },
+    googleId: {
+        type: String,
+        sparse: true,
+        unique: true
     },
     role: {
         type: String,

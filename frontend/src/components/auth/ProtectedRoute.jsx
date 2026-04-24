@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
-const ProtectedRoute = ({ allowedRoles }) => {
+const ProtectedRoute = ({ allowedRoles, requirePhone = true }) => {
   const { isAuthenticated, user, loading } = useSelector((state) => state.auth);
 
   if (loading) {
@@ -19,6 +19,11 @@ const ProtectedRoute = ({ allowedRoles }) => {
 
   if (!user?.isVerified) {
     return <Navigate to="/verify-otp" replace />;
+  }
+
+  // Enforce phone number for all users (especially Google users)
+  if (requirePhone && !user?.phone) {
+    return <Navigate to="/complete-profile" replace />;
   }
 
   if (allowedRoles && !allowedRoles.includes(user?.role)) {

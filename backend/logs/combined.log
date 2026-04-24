@@ -95,3 +95,13 @@
 {"level":"info","message":"Message sent: <e46297f5-9de4-5358-1ef5-f8aae86cd4df@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-12T16:17:33.923Z"}
 {"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTadvFneHwJ1INbQ4YAAAADStqkl3kGbOcSEtg-uDb7aA","service":"futsalkhelum-api","timestamp":"2026-04-12T16:17:33.927Z"}
 {"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-16T17:35:02.487Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-17T03:55:41.023Z"}
+{"level":"info","message":"Message sent: <4dc9f2d7-7016-cb9f-4263-b8d3b24a9415@localhost>","service":"futsalkhelum-api","timestamp":"2026-04-17T03:57:59.151Z"}
+{"level":"info","message":"Preview URL: https://ethereal.email/message/adTJUOiS5PmGjZOTaeGvx3Np7fHIcG76AAAAEKeVYFuqd4elwKrsjmxdSZs","service":"futsalkhelum-api","timestamp":"2026-04-17T03:57:59.155Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-17T17:44:35.506Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-18T04:56:33.021Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-18T04:56:38.667Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-20T08:39:34.170Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-24T06:07:51.636Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-24T06:20:25.215Z"}
+{"level":"info","message":"Server is running on port 5000 in development mode","service":"futsalkhelum-api","timestamp":"2026-04-24T06:20:42.669Z"}

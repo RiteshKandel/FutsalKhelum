@@ -22,3 +22,9 @@ export const verifyOtpSchema = z.object({
         otp: z.string({ required_error: 'OTP is required' }).length(6, 'OTP must be 6 digits')
     })
 });
+
+export const googleAuthSchema = z.object({
+    body: z.object({
+        token: z.string({ required_error: 'Token is required' })
+    })
+});
