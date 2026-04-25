@@ -122,12 +122,13 @@ export const verifyOtp = async (req, res) => {
     await OTP.deleteMany({ email });
 
     const token = generateToken(user._id);
+    const userWithoutPassword = await User.findById(user._id);
 
     res.status(200).json({
         status: 'success',
         message: 'Email successfully verified',
         token,
-        data: { id: user._id, name: user.name, email: user.email, role: user.role, isVerified: true, isApproved: user.isApproved }
+        data: userWithoutPassword
     });
 };
 

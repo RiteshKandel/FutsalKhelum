@@ -31,11 +31,6 @@ const Login = () => {
             }
 
             dispatch(loginSuccess({ user, token }));
-            
-            if (!user.phone) {
-                navigate('/complete-profile');
-                return;
-            }
 
             if (user.role === 'OWNER') navigate('/owner/dashboard');
             else if (user.role === 'ADMIN') navigate('/admin/dashboard');

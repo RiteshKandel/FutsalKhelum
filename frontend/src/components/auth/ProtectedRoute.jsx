@@ -21,8 +21,8 @@ const ProtectedRoute = ({ allowedRoles, requirePhone = true }) => {
     return <Navigate to="/verify-otp" replace />;
   }
 
-  // Enforce phone number for all users (especially Google users)
-  if (requirePhone && !user?.phone) {
+  // Enforce phone number ONLY for Google users
+  if (requirePhone && user?.authProvider === 'google' && !user?.phone) {
     return <Navigate to="/complete-profile" replace />;
   }
 
